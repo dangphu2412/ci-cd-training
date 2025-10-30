@@ -14,4 +14,10 @@ jobs:
     name: Echo Hello world
     steps:
       - name: Echo
-        run: 'echo "Node env is: $NODE_ENV"'
+        run: 'echo "Node env is: ${{ env.NODE_ENV }} $NODE_ENV"'
+
+  unit-test:
+    runs-on: ubuntu-latest
+    name: Run Unit Test
+    steps:
+      - uses: actions/checkout@v5
