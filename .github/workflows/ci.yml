@@ -26,3 +26,13 @@ jobs:
     steps:
       - name: Echo
         run: 'echo "Node env is: ${{ env.NODE_ENV }} $NODE_ENV"'
+
+  cd:
+    runs-on: ubuntu-latest
+    name: Build and publish docker
+    steps:
+      - name: Build docker
+        run: docker build . -t chuotcona123/training:${{ github.sha }}
+
+      - name: Echo docker
+        run: docker image list
