@@ -24,4 +24,6 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_ENV }}
+      - name: test
+        run: npm run test
 
