@@ -5,10 +5,13 @@ on:
     branches:
       - main
 
+env:
+  NODE_ENV: 22.0.0
+
 jobs:
   echo_helloworld:
     runs-on: ubuntu-latest
     name: Echo Hello world
     steps:
       - name: Echo
-        run: echo "Hello world"
+        run: 'echo "Node env is: $NODE_ENV"'
