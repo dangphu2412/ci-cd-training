@@ -1,0 +1,14 @@
+name: CI workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  echo_helloworld:
+    runs-on: ubuntu-latest
+    name: Echo Hello world
+    steps:
+      - name: Echo
+        run: echo "Hello world"
