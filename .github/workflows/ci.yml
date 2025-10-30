@@ -9,13 +9,6 @@ env:
   NODE_ENV: 22.0.0
 
 jobs:
-  echo_helloworld:
-    runs-on: ubuntu-latest
-    name: Echo Hello world
-    steps:
-      - name: Echo
-        run: 'echo "Node env is: ${{ env.NODE_ENV }} $NODE_ENV"'
-
   unit-test:
     runs-on: ubuntu-latest
     name: Run Unit Test
@@ -27,3 +20,11 @@ jobs:
       - name: test
         run: npm run test
         continue-on-error: true
+
+  notify-job:
+    runs-on: ubuntu-latest
+    name: Notifier
+    needs: [unit-test]
+    steps:
+      - name: Echo
+        run: 'echo "Node env is: ${{ env.NODE_ENV }} $NODE_ENV"'
