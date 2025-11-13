@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  NODE_ENV: 22.0.0
+  NODE_VERSION: 22.0.0
 
 jobs:
   unit-test:
@@ -16,8 +16,8 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v6
         with:
-          node-version: ${{ env.NODE_ENV }}
+          node-version: ${{ env.NODE_VERSION }}
       - name: Unit Test
         run: npm run test
       - name: Lint
-        run: npm run test
+        run: npm run lint

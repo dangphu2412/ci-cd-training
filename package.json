@@ -4,13 +4,16 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run start",
-    "test":  "echo \"test: no test specified\" && exit 0",
-    "lint":  "echo \"lint: no lint defined\" && exit 0"
+    "lint": "echo \"test: no test specified\" && exit 0",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0"
   }
 }
