@@ -1,7 +1,7 @@
 name: CI workflow
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
@@ -17,23 +17,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_ENV }}
-      - name: test
+      - name: Unit Test
         run: npm run test
-
-  notify-job:
-    runs-on: ubuntu-latest
-    name: Notifier
-    steps:
-      - name: Echo
-        run: 'echo "Node env is: ${{ env.NODE_ENV }} $NODE_ENV"'
-
-  cd:
-    runs-on: ubuntu-latest
-    name: Build and publish docker
-    steps:
-      - uses: actions/checkout@v5
-      - name: Build docker
-        run: docker build . -t chuotcona123/training:${{ github.sha }}
-
-      - name: Echo docker
-        run: docker image list
+      - name: Lint
+        run: npm run test
