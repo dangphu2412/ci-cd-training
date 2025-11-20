@@ -14,8 +14,9 @@ jobs:
     name: Build and publish docker
     steps:
       - uses: actions/checkout@v5
+      - name: Login docker
+        run: docker login -u chuotcona123 -p password
       - name: Build docker
         run: docker build . -t chuotcona123/training:${{ github.sha }}
-
-      - name: Echo docker
-        run: docker image list
+      - name: Docker push
+        run: docker push
