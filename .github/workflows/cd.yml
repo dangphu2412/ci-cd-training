@@ -16,4 +16,4 @@ jobs:
       - name: Build docker
         run: docker build . -t chuotcona123/training:${{ github.sha }}
       - name: Docker push
-        run: docker push
+        run: docker push chuotcona123/training:${{ github.sha }}
