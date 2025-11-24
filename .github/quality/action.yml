@@ -1,20 +1,29 @@
-name: 'Quality Checks'
-description: 'We are demo'
+name: Quality Checks
+description: We are demo
+
 inputs:
-  NODE_VERSION: # id of input
-    description: 'Who to greet'
+  NODE_VERSION:
+    description: Node version
     required: true
     default: '22.0.0'
+
 runs:
-  using: "composite"
+  using: composite
   steps:
-    - uses: actions/checkout@v5
-    - uses: actions/setup-node@v6
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-node@v4
       with:
-        node-version: ${{ inputs.NODE_VERSION }}
+        node-version: 22.0.0
+
     - name: Install
       run: npm install
+      shell: bash
+
     - name: Unit Test
       run: npm run test
+      shell: bash
+
     - name: Lint
       run: npm run lint
+      shell: bash
