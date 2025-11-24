@@ -11,13 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Run Unit Test
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v6
+      - id: foo
+        uses: dangphu2412/ci-cd-training/quality@v2
         with:
-          node-version: ${{ vars.NODE_VERSION }}
-      - name: Install
-        run: npm install
-      - name: Unit Test
-        run: npm run test
-      - name: Lint
-        run: npm run lint
+          NODE_VERSION: {{ $vars.NODE_VERSION }}
