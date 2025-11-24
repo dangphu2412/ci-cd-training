@@ -1,12 +1,6 @@
 name: Quality Checks
 description: We are demo
 
-inputs:
-  NODE_VERSION:
-    description: Node version
-    required: true
-    default: '22.0.0'
-
 runs:
   using: composite
   steps:
