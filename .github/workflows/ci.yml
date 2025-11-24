@@ -12,6 +12,4 @@ jobs:
     name: Run Unit Test
     steps:
       - id: foo
-        uses: dangphu2412/ci-cd-training/quality@v2
-        with:
-          NODE_VERSION: {{ $vars.NODE_VERSION }}
+        uses: dangphu2412/ci-cd-training/.github/quality@v4
