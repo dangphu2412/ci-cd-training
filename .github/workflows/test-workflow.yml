@@ -1,15 +1,11 @@
-name: CI workflow
-
+name: 'Unit test workflow'
 on:
-  pull_request:
-    branches:
-      - main
-      - develop
+  workflow_call:
 
 jobs:
-  lint:
+  unit-test:
     runs-on: ubuntu-latest
-    name: Run Lint
+    name: Run Unit Test
     steps:
       - uses: actions/checkout@v4
 
@@ -24,10 +20,3 @@ jobs:
       - name: Unit Test
         run: npm run test
         shell: bash
-
-      - name: Lint
-        run: npm run lint
-        shell: bash
-
-  unit-test:
-    uses: ./.github/workflows/test-workflow.yml
