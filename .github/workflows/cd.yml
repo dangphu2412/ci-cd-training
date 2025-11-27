@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and publish docker
     steps:
+      - uses: dangphu2412/ci-cd-training/.github/quality@v4
       - uses: actions/checkout@v5
       - name: Login docker
         run: docker login -u ${{ vars.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}

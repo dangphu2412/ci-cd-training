@@ -11,5 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     name: Run Unit Test
     steps:
-      - id: foo
-        uses: dangphu2412/ci-cd-training/.github/quality@v4
+      - uses: dangphu2412/ci-cd-training/.github/quality@v4
+
