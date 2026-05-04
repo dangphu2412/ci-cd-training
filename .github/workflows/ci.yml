@@ -10,12 +10,17 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     name: Run Lint
+    environment: dev
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22.0.0
+
+      - name: Check env
+        run: echo ${{ vars.URLS }}
+        shell: bash
 
       - name: Install
         run: npm install
@@ -30,4 +35,13 @@ jobs:
         shell: bash
 
   unit-test:
-    uses: ./.github/workflows/test-workflow.yml
+    strategy:
+      fail-fast: false
+      matrix:
+        url: ${{ vars.ZAP_URLS }}
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Check env
+        run: echo ${{ vars.URLS }}
+        shell: bash
