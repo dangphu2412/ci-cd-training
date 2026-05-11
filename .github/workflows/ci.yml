@@ -34,11 +34,25 @@ jobs:
         run: npm run lint
         shell: bash
 
+
+  parse-matrix:
+    runs-on: ubuntu-latest
+    environment: dev
+    outputs:
+      urls: ${{ steps.set-urls.outputs.urls }}
+    steps:
+      - name: Set URLs
+        id: set-urls
+        shell: bash
+        run: |
+          echo "urls=${{ vars.URLS }}" >> "$GITHUB_OUTPUT"
+          echo $GITHUB_OUTPUT
+
   unit-test:
+    needs: parse-matrix
     strategy:
-      fail-fast: false
       matrix:
-        url: ${{ vars.ZAP_URLS }}
+        url: ${{ fromJSON(needs.parse-matrix.outputs.urls) }}
     runs-on: ubuntu-latest
     environment: dev
     steps:
