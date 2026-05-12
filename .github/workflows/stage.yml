@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  release-prod:
+  release-canary:
     runs-on: ubuntu-latest
     permissions:
       contents: write
