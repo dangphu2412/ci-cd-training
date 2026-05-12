@@ -42,7 +42,7 @@ jobs:
           context: .
           push: true
           tags: |
-            chuotcona123/training:${{ steps.tag.outputs.tag }} \
+            chuotcona123/training:${{ steps.tag.outputs.tag }} 
             chuotcona123/training:latest
           provenance: false
 
