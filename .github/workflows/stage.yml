@@ -1,7 +1,9 @@
-name: Production CD
+name: Canary Release CD
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - release/*
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -23,8 +25,10 @@ jobs:
       - name: Extract Tag
         id: tag
         run: |
-          TAG=${GITHUB_REF#refs/release/}
-          echo "TAG=${TAG}" >> $GITHUB_OUTPUT
+          BRANCH_NAME=${GITHUB_REF_NAME}
+          VERSION=${BRANCH_NAME#release/}
+          RC_TAG=$VERSION-rc.${{ github.run_number }}
+          echo "tag=${RC_TAG}" >> $GITHUB_OUTPUT
 
       - name: Docker Auth
         id: docker-auth
@@ -50,3 +54,5 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
+          prerelease: true
+          tag_name: ${{ steps.tag.outputs.tag }}

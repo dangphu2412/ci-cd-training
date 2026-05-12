@@ -1,14 +1,16 @@
-name: Production CD
+name: Develop CD
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - develop
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  release-prod:
+  build-dev:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -19,12 +21,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22.0.0
-
-      - name: Extract Tag
-        id: tag
-        run: |
-          TAG=${GITHUB_REF#refs/release/}
-          echo "TAG=${TAG}" >> $GITHUB_OUTPUT
 
       - name: Docker Auth
         id: docker-auth
@@ -41,12 +37,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: |
-            chuotcona123/training:${{ steps.tag.outputs.tag }} \
-            chuotcona123/training:latest
+          tags: chuotcona123/training:${{ github.sha }}
           provenance: false
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          generate_release_notes: true
